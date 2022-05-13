@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+</head>
+<body>
+    <h2>Roll the dice!</h2>
+    <ul>
+        <li><a href="/roll/1">1</a></li>
+        <li><a href="/roll/2">2</a></li>
+        <li><a href="/roll/3">3</a></li>
+        <li><a href="/roll/4">4</a></li>
+        <li><a href="/roll/5">5</a></li>
+        <li><a href="/roll/6">6</a></li>
+    </ul>
+
+    <div th:if="${num}">
+        <div th:if="${num == randomNum}">
+            <h2>You guessed correct!!!</h2>
+        </div>
+
+        <div th:if="${num != randomNum}">
+            <h2>You guessed wrong!</h2>
+            <p>Better luck next time.</p>
+        </div>
+    </div>
+
+</body>
+</html>
