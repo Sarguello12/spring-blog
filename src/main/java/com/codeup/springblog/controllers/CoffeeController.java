@@ -20,9 +20,16 @@ public class CoffeeController {
     }
 
     @GetMapping
-    public String coffeeInfo(){
-        return "views-lecture/coffee";
+    public String allCoffees(Model model){
+        List<Coffee> coffees = coffeeDao.findAll();
+        model.addAttribute("coffees", coffees);
+        return "coffees/index";
     }
+
+//    @GetMapping
+//    public String coffeeInfo(){
+//        return "views-lecture/coffee";
+//    }
 
     @PostMapping
     public String newsLetterSignup(@RequestParam(name="email") String email, Model model){

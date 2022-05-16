@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Coffees</title>
 </head>
 <body>
+
+    <div th:if="${coffees}">
+        <ul>
+            <li th:each="coffee : ${coffees}">
+                <span th:text="${coffee.brand}"></span>
+                <span th:text="${coffee.roast}"></span>
+                <span th:text="${coffee.origin}"></span>
+            </li>
+        </ul>
+    </div>
 
 </body>
 </html>
