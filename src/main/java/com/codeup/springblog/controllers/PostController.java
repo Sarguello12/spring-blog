@@ -1,12 +1,11 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +13,23 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+
     @GetMapping("/posts")
     public String posts(Model model){
-        List<Post> posts = new ArrayList<>();
+//        List<Post> posts = new ArrayList<>();
+//
+//        Post post1 = new Post("title", "this is a ver informative body.");
+//        Post post2 = new Post("title", "you should really read this");
+//
+//        posts.add(post1);
+//        posts.add(post2);
 
-        Post post1 = new Post("title", "this is a ver informative body.");
-        Post post2 = new Post("title", "you should really read this");
-
-        posts.add(post1);
-        posts.add(post2);
-
+        List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
 
         return "posts/index";
@@ -38,14 +44,14 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String create(){
-        return "imagine viewing the form";
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String createForm(){
-        return "imagine the create form";
+    public String createForm(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        Post post = new Post(title, body);
+        postDao.save(post);
+        return "redirect:/posts";
     }
 }
