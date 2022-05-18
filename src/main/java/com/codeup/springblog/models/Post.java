@@ -13,6 +13,17 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    @OneToOne
+    private PostDetails postDetails;
+
+    public long getId() {
+        return id;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
     public Post(String title, String body) {
         this.title = title;
         this.body = body;
@@ -36,5 +47,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
     }
 }

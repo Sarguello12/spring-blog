@@ -5,9 +5,7 @@ import com.codeup.springblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,17 +15,11 @@ public class PostController {
 
     public PostController(PostRepository postDao){
         this.postDao = postDao;
+
     }
 
     @GetMapping("/posts")
     public String posts(Model model){
-//        List<Post> posts = new ArrayList<>();
-//
-//        Post post1 = new Post("title", "this is a ver informative body.");
-//        Post post2 = new Post("title", "you should really read this");
-//
-//        posts.add(post1);
-//        posts.add(post2);
 
         List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
@@ -54,4 +46,12 @@ public class PostController {
         postDao.save(post);
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/details")
+    public String viewDetails(Model model){
+        List<Post> posts = postDao.findAll();
+        model.addAttribute("posts", posts);
+        return "posts/details";
+    }
+
 }
