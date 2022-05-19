@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>details</title>
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .img-list {
+            display: inline-flex;
+            flex-wrap: wrap;
+        }
+
+    </style>
 </head>
 <body>
 <h1>Here are all the posts: </h1>
 
   <div th:each="post : ${posts}">
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-      <p>Post info</p>
-      <ul>
-          <li>Posted: <span th:text="${post.postDetails.historyOfPost}"></span></li>
-          <li>Is it Awesome? <span th:text="${post.postDetails.isAwesome}"></span></li>
-          <li>Topic: <span th:text="${post.postDetails.topicDescription}"></span></li>
-      </ul>
 
-  </div>
+          <div th:each="image : ${post.postImageList}" class="img-list">
+              <img th:src="${image.url}">
+          </div>
 
+          <h2 th:text="${post.title}"></h2>
+          <p th:text="${post.body}"></p>
+          <p>Post info</p>
+          <ul>
+              <li>Posted: <span th:text="${post.postDetails.historyOfPost}"></span></li>
+              <li>Is it Awesome? <span th:text="${post.postDetails.isAwesome}"></span></li>
+              <li>Topic: <span th:text="${post.postDetails.topicDescription}"></span></li>
+          </ul>
+
+    </div>
 </body>
 </html>

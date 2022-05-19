@@ -1,6 +1,8 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.PostImage;
+import com.codeup.springblog.repositories.PostImagesRepository;
 import com.codeup.springblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,11 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
+    private final PostImagesRepository postImageDao;
 
-    public PostController(PostRepository postDao){
+    public PostController(PostRepository postDao, PostImagesRepository postImageDao){
         this.postDao = postDao;
-
+        this.postImageDao = postImageDao;
     }
 
     @GetMapping("/posts")
@@ -52,6 +55,23 @@ public class PostController {
         List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
         return "posts/details";
+    }
+
+    @GetMapping("/posts/add")
+    public String addPost(){
+        return "posts/add";
+    }
+
+    @PostMapping("/add")
+    public String addImage(@RequestParam(name = "image_title") String imgTitle, @RequestParam(name = "url") String url, @RequestParam(name = "post_id") Long postId){
+
+        Post post = postDao.getById(postId);
+        PostImage postImage = new PostImage(imgTitle, url, post);
+
+        post.getPostImageList().add(postImage);
+        postDao.save(post);
+//        postImageDao.save(postImage);
+        return "redirect:/posts/details";
     }
 
 }

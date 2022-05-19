@@ -1,6 +1,8 @@
 package com.codeup.springblog.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -16,6 +18,18 @@ public class Post {
     @OneToOne
     private PostDetails postDetails;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImage> postImageList = new ArrayList<>();
+
+    public Post() {
+
+    }
+
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
     public long getId() {
         return id;
     }
@@ -24,21 +38,16 @@ public class Post {
         return postDetails;
     }
 
-    public Post(String title, String body) {
-        this.title = title;
-        this.body = body;
-    }
-
-    public Post() {
-
-    }
-
     public String getTitle() {
         return title;
     }
 
     public String getBody() {
         return body;
+    }
+
+    public List<PostImage> getPostImageList() {
+        return postImageList;
     }
 
     public void setTitle(String title) {
@@ -55,5 +64,9 @@ public class Post {
 
     public void setPostDetails(PostDetails postDetails) {
         this.postDetails = postDetails;
+    }
+
+    public void setPostImageList(List<PostImage> postImageList) {
+        this.postImageList = postImageList;
     }
 }
