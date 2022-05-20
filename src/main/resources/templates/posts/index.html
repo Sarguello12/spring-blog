@@ -9,6 +9,11 @@
     <div th:each="post : ${posts}">
         <h3 th:text="${post.title}"></h3>
         <p th:text="${post.body}"></p>
+
+        <form action="/posts/delete" method="post">
+            <input type="hidden" th:value="${post.id}" name="post_id">
+            <input type="submit">
+        </form>
     </div>
 
 </body>
