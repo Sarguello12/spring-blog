@@ -39,13 +39,13 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String create(){
+    public String create(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createForm(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        Post post = new Post(title, body);
+    public String createForm(@ModelAttribute Post post){
         postDao.save(post);
         return "redirect:/posts";
     }
@@ -57,16 +57,24 @@ public class PostController {
         return "posts/details";
     }
 
+
+
+
+
+
+
+
+
     @GetMapping("/posts/add")
-    public String addPost(){
+    public String addPost(Model model){
+        model.addAttribute("postImage", new PostImage());
         return "posts/add";
     }
 
     @PostMapping("/add")
-    public String addImage(@RequestParam(name = "image_title") String imgTitle, @RequestParam(name = "url") String url, @RequestParam(name = "post_id") Long postId){
+    public String addImage(@ModelAttribute PostImage postImage){
 
-        Post post = postDao.getById(postId);
-        PostImage postImage = new PostImage(imgTitle, url, post);
+        Post post = postDao.getById(postImage.getPost().getId());
 
         post.getPostImageList().add(postImage);
         postDao.save(post);
