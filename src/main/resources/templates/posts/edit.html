@@ -8,15 +8,22 @@
 <body>
     <div th:replace="partials/partials.html :: navbar"></div>
 
-    <h1>Edit Posts</h1>
-    <form th:action="@{'/posts/edit'}" th:method="post" th:object="${post}">
-        <input type="hidden" th:field="*{id}">
-        <label for="title">Title</label>
-        <input type="text" id="title" th:field="*{title}">
-        <label for="body">Body</label>
-        <textarea th:field="*{body}" id="body"></textarea>
-        <input type="submit"/>
-    </form>
+    <div class="container">
+        <form th:action="@{'/posts/edit'}" th:method="post" th:object="${post}">
+            <div class="mb-3">
+                <input type="hidden" th:field="*{id}">
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input th:field="*{title}" type="text" class="form-control" id="title" placeholder="Blog post title">
+            </div>
+            <div class="mb-3">
+                <label for="body" class="form-label">Body</label>
+                <textarea th:field="*{body}" class="form-control" id="body" rows="4" placeholder="Blog post body"></textarea>
+            </div>
+            <input type="submit" value="Submit Edit" class="btn btn-warning"/>
+        </form>
+    </div>
 
     <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
