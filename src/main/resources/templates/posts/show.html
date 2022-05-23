@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
+    <div th:replace="partials/partials.html :: bootstrap-css"></div>
 </head>
 <body>
+    <div th:replace="partials/partials.html :: navbar"></div>
 
     <h3 th:text="${post.title}"></h3>
     <p th:text="${post.body}"></p>
     <p th:text="${user.email}"></p>
+
+    <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>

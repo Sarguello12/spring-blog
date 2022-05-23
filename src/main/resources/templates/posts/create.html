@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Create a Post</title>
+    <div th:replace="partials/partials.html :: bootstrap-css"></div>
 </head>
 <body>
+    <div th:replace="partials/partials.html :: navbar"></div>
+
 <fieldset>
     <legend>Add a Post</legend>
     <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
@@ -15,5 +18,7 @@
         <input type="submit" value="submit">
     </form>
 </fieldset>
+
+    <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>

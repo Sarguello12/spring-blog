@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <div th:replace="partials/partials.html :: bootstrap-css"></div>
 </head>
 <body>
+    <div th:replace="partials/partials.html :: navbar"></div>
 
-    <div th:each="post : ${posts}">
-        <h3 th:text="${post.title}"></h3>
-        <p th:text="${post.body}"></p>
+    <div class="d-flex flex-wrap">
+        <div th:each="post : ${posts}">
+            <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${post.title}"></h5>
+                    <p class="card-text" th:text="${post.body}"></p>
+                    <div class="d-flex align-items-center d-inline-block">
+                        <form action="/posts/delete" method="post" class="card-link">
+                            <input type="hidden" th:value="${post.id}" name="post_id">
+                            <input type="submit" value="delete" class="bg-danger">
+                        </form>
 
-        <form action="/posts/delete" method="post">
-            <input type="hidden" th:value="${post.id}" name="post_id">
-            <input type="submit">
-        </form>
+
+                        <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="get" class="card-link">
+                            <input type="submit" value="edit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>
