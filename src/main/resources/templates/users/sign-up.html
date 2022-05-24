@@ -9,20 +9,40 @@
     <div th:replace="partials/partials.html :: navbar"></div>
 
     <div class="container my-5">
-        <h1>Create an account</h1>
+        <h1>Create your account</h1>
         <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-            <label for="username">Username</label>
-            <input id="username" th:field="*{username}" />
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input id="username" th:field="*{username}" type="text" class="form-control" placeholder="username"/>
+            </div>
 
-            <label for="email">Email</label>
-            <input id="email" th:field="*{email}" />
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" th:field="*{email}" type="email" class="form-control" placeholder="email@email.com"/>
+            </div>
 
-            <label for="password">Password</label>
-            <input id="password" type="password" th:field="*{password}" />
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" th:field="*{password}" type="password" class="form-control" placeholder="password"/>
+            </div>
 
-            <input value="Sign me up!" type="submit" />
+            <input value="Sign me up!" type="submit" class="btn btn-success"/>
         </form>
     </div>
+
+<!--    <div class="container pt-5">-->
+<!--        <form th:action="@{/login}" th:method="post">-->
+<!--            <div class="mb-3">-->
+<!--                <label for="username" class="form-label">Username</label>-->
+<!--                <input type="text" name="username" id="username" class="form-control" placeholder="please enter your username">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label for="password" class="form-label">Password</label>-->
+<!--                <input type="password" id="password" name="password" class="form-control" placeholder="please enter your password">-->
+<!--            </div>-->
+<!--            <input type="submit" value="Submit" class="btn btn-success"/>-->
+<!--        </form>-->
+<!--    </div>-->
 
 
     <div th:replace="partials/partials.html :: footer"></div>

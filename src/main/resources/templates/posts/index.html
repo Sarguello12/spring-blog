@@ -7,7 +7,8 @@
 </head>
 <body>
     <div th:replace="partials/partials.html :: navbar"></div>
-        <div class="py-5 bg-success p-2 text-dark bg-opacity-25">
+
+        <div class="py-5 bg-success p-2 text-dark bg-opacity-25 vh-100">
             <div class="container d-flex flex-wrap">
                 <div th:each="post : ${posts}">
                     <div class="card m-3" style="width: 18rem;">
@@ -30,8 +31,6 @@
                 </div>
             </div>
         </div>
-
-
 
     <div th:replace="partials/partials.html :: footer"></div>
     <div th:replace="partials/partials.html :: bootstrap-js"></div>
