@@ -32,4 +32,9 @@ public class UserController {
         userDao.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/profile")
+    public String viewProfile(){
+        return "users/profile";
+    }
 }

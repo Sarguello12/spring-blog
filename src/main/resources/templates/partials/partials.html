@@ -12,7 +12,7 @@
     </div>
 
     <div th:fragment="navbar">
-        <nav class="navbar bg-success ">
+        <nav class="navbar bg-success p-2 text-white bg-opacity-75">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-auto">
@@ -28,26 +28,28 @@
                 </button>
 
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
+                    <div class="offcanvas-header bg-success p-2 text-dark bg-opacity-25">
                         <i class="fa-solid fa-user offcanvas-title fa-2xl" id="offcanvasNavbarLabel"></i>
-                        <h5>Profile</h5>
+                        <h5 class="fs-1">User Portal</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <div class="offcanvas-body d-inline-block bg-success p-2 text-dark bg-opacity-10">
+                        <ul class="navbar-nav  flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="btn" aria-current="page" href="/posts">Posts</a>
+                                <a class="btn fs-2" aria-current="page" href="/profile">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn" href="/posts/create">Create</a>
+                                <a class="btn fs-2" aria-current="page" href="/posts">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn fs-2" href="/posts/create">Create</a>
                             </li>
                         </ul>
-                        <div class="">
-                            <form th:action="@{/logout}" th:method="post">
-                                <button class="btn">Logout</button>
-                            </form>
-                        </div>
-
+                    </div>
+                    <div class="footer px-3 py-5 bg-success p-2 text-dark bg-opacity-25">
+                        <form th:action="@{/logout}" th:method="post">
+                            <button class="btn fs-2">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -4,14 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <div th:replace="partials/partials.html :: bootstrap-css"></div>
 </head>
 <body>
-    <div sec:authorize="isAuthenticated()">
-        This content is only shown to authenticated users.
+    <div th:replace="partials/partials.html :: navbar"></div>
 
-        User ID: <span th:text="${#authentication.principal.id}"></span>
-        Username: <span th:text="${#authentication.principal.username}"></span>
-        Email: <span th:text="${#authentication.principal.email}"></span>
+    <div sec:authorize="isAuthenticated()" class="container m-5">
+
+        <h2 th:text="'Welcome, ' + ${#authentication.principal.username} + '!'" ></h2>
+
+
+        <h3>This content is only shown when you are logged into your account.</h3>
+
+        <h4>User ID: <span th:text="${#authentication.principal.id}"></span></h4>
+        <h4>Username: <span th:text="${#authentication.principal.username}"></span></h4>
+        <h4>Email: <span th:text="${#authentication.principal.email}"></span></h4>
     </div>
+
+    <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>

@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8" />
     <title>Log In</title>
+    <div th:replace="partials/partials.html :: bootstrap-css"></div>
 </head>
 <body>
-<h1>Log In</h1>
-<div th:if="${param.error}">
-    Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
+    <div th:replace="partials/partials.html :: navbar"></div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-</form>
+    <div class="container pt-5">
+        <h1>Log In</h1>
+        <div th:if="${param.error}">
+            <h5 class="text-secondary">Invalid Username and Password.</h5>
+        </div>
+        <div th:if="${param.logout}">
+            <h5 class="text-secondary">You have been logged out.</h5>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <form th:action="@{/login}" th:method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="please enter your username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="please enter your password">
+            </div>
+            <input type="submit" value="Submit" class="btn btn-success"/>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <h3>First time? <a th:href="@{/sign-up}" th:method="post" class="link-success">Create an account.</a></h3>
+
+    </div>
+
+    <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>

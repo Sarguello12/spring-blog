@@ -7,30 +7,29 @@
 </head>
 <body>
     <div th:replace="partials/partials.html :: navbar"></div>
+        <div class="py-5 bg-success p-2 text-dark bg-opacity-25">
+            <div class="container d-flex flex-wrap">
+                <div th:each="post : ${posts}">
+                    <div class="card m-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${post.title}"></h5>
+                            <p class="card-text" th:text="${post.body}"></p>
+                            <div class="d-flex align-items-center d-inline-block">
 
-    <div class="container my-5">
-        <div class="d-flex flex-wrap">
-            <div th:each="post : ${posts}">
-                <div class="card m-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${post.title}"></h5>
-                        <p class="card-text" th:text="${post.body}"></p>
-                        <div class="d-flex align-items-center d-inline-block">
+                                <form th:action="@{/posts/delete}" th:method="post" class="card-link">
+                                    <input type="hidden" th:value="${post.id}" name="post_id">
+                                    <input type="submit" value="delete" class="btn bg-danger">
+                                </form>
 
-                            <form th:action="@{/posts/delete}" th:method="post" class="card-link">
-                                <input type="hidden" th:value="${post.id}" name="post_id">
-                                <input type="submit" value="delete" class="btn bg-danger">
-                            </form>
-
-                            <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="get" class="card-link">
-                                <input type="submit" value="edit" class="btn bg-warning">
-                            </form>
+                                <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="get" class="card-link">
+                                    <input type="submit" value="edit" class="btn bg-warning">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 

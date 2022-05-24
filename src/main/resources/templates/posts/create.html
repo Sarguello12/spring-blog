@@ -8,10 +8,7 @@
 <body>
     <div th:replace="partials/partials.html :: navbar"></div>
 
-
-    <h2>Add a Post</h2>
-
-    <div class="container">
+    <div class="container pt-5">
         <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
             <div class="mb-3">
                 <label for="title" class="form-label">Title:</label>
@@ -24,8 +21,6 @@
             <input type="submit" value="Submit" class="btn btn-warning"/>
         </form>
     </div>
-
-
     <div th:replace="partials/partials.html :: bootstrap-js"></div>
 </body>
 </html>
