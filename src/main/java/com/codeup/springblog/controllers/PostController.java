@@ -36,10 +36,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String individualPost(@PathVariable long id, Model model){
         Post post = postDao.getById(id);
-        User user = userDao.getById(post.getUser().getId());
         model.addAttribute("post", post);
-        model.addAttribute("user", user);
-
         return "posts/show";
     }
 
@@ -51,8 +48,6 @@ public class PostController {
 
     @PostMapping("posts/create")
     public String createForm(@ModelAttribute Post post){
-
-
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long userId = user.getId();
         post.setUser(userDao.getById(userId));
