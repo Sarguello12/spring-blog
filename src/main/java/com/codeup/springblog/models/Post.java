@@ -23,9 +23,7 @@ public class Post {
         this.user = user;
     }
 
-    public Post() {
-
-    }
+    public Post() {}
 
     public Post(String title, String body) {
         this.title = title;
@@ -62,15 +60,5 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                '}';
     }
 }
