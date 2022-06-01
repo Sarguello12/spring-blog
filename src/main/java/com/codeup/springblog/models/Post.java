@@ -12,22 +12,26 @@ public class Post {
     private String title;
     @Column(nullable = false)
     private String body;
+    @Column
+    private String imgUrl;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Post(String title, String body, User user) {
+    public Post(String title, String body, String imgUrl, User user) {
         this.title = title;
         this.body = body;
+        this.imgUrl = imgUrl;
         this.user = user;
     }
 
     public Post() {}
 
-    public Post(String title, String body) {
+    public Post(String title, String body, String imgUrl) {
         this.title = title;
         this.body = body;
+        this.imgUrl = imgUrl;
     }
 
     public String getTitle() {
@@ -60,5 +64,13 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
     }
 }

@@ -81,7 +81,7 @@ public class ExerciseTest {
                         post("/posts/create")
                                 .with(csrf())
                                 .session((MockHttpSession) session)
-                                .flashAttr("post", new Post("xxTestTitlexx", "body text"))
+                                .flashAttr("post", new Post("xxTestTitlexx", "body text", "test img"))
                 ).andExpect(status()
                         .is3xxRedirection())
                 .andDo(print());
@@ -125,11 +125,12 @@ public class ExerciseTest {
 
     @Test
     public void testPostEdit() throws Exception {
-        Post post = new Post("New Post", "I am the body", testUser);
+        Post post = new Post("New Post", "I am the body", "test img", testUser);
         post = postDao.save(post);
 
         post.setTitle("Updated Title!");
         post.setBody("Updated Body!!!");
+        post.setImgUrl("an image");
 
         mvc.perform(post("/posts/edit")
                 .with(csrf())
@@ -153,7 +154,7 @@ public class ExerciseTest {
 
     @Test
     public void testPostDelete() throws Exception {
-        Post post = new Post("New Post", "I am the body", testUser);
+        Post post = new Post("New Post", "I am the body", "img test",testUser);
         post = postDao.save(post);
         Long id = post.getId();
 

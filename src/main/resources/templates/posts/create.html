@@ -18,9 +18,42 @@
                 <label for="body" class="form-label">Body:</label>
                 <textarea th:field="*{body}" class="form-control" id="body" rows="4" placeholder="Blog post body"></textarea>
             </div>
+            <div class="mb-3">
+                <label for="imgUrl" class="form-label">Body:</label>
+<!--                <input th:field="*{imgUrl}" type="text" class="form-control" id="imgUrl" placeholder="image Url">-->
+                <div id="dragDrop">Drag and Drop</div>
+                <input id="imgUrl" th:field="*{imgUrl}" type="hidden">
+            </div>
             <input type="submit" value="Submit" class="btn btn-success"/>
         </form>
     </div>
     <div th:replace="partials/partials.html :: bootstrap-js"></div>
+
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
+    <script>
+        const client = filestack.init('AxqR4xQKmTBSrOB3RDddUz');
+        let value = null;
+        console.log(value)
+
+        const options = {
+            onFileUploadFinished: file => {
+                console.log(file.originalPath)
+                value = file.originalPath;
+                document.getElementById("imgUrl").value = value;
+                console.log(value);
+            }
+        }
+
+
+        document.getElementById("dragDrop").onclick = function (){
+            client.picker(options).open();
+        }
+
+
+
+
+    </script>
+
 </body>
 </html>
