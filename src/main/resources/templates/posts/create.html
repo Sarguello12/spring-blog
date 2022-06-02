@@ -19,9 +19,7 @@
                 <textarea th:field="*{body}" class="form-control" id="body" rows="4" placeholder="Blog post body"></textarea>
             </div>
             <div class="mb-3">
-                <label for="imgUrl" class="form-label">Body:</label>
-<!--                <input th:field="*{imgUrl}" type="text" class="form-control" id="imgUrl" placeholder="image Url">-->
-                <div id="dragDrop">Drag and Drop</div>
+                <div id="dragDrop" class="btn btn-warning">Add Image</div>
                 <input id="imgUrl" th:field="*{imgUrl}" type="hidden">
             </div>
             <input type="submit" value="Submit" class="btn btn-success"/>
@@ -37,8 +35,10 @@
         console.log(value)
 
         const options = {
+            fromSources: ["local_file_system", "url"],
+            accept: ["image/jpeg"],
             onFileUploadFinished: file => {
-                console.log(file.originalPath)
+                console.log(file)
                 value = file.originalPath;
                 document.getElementById("imgUrl").value = value;
                 console.log(value);
